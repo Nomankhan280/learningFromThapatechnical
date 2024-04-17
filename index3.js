@@ -253,11 +253,23 @@
 // let closureFunction = outerfuction();
 // console.dir(closureFunction);
 
-function multiplyer(number){
-    return function (factor){
-        console.log(factor,number);
-        return factor*number
-    }
+// function multiplyer(number){
+//     return function (factor){
+//         console.log(factor,number);
+//         return factor*number
+//     }
+// }
+// let duoble = multiplyer(2);
+// console.log(duoble(5));
+
+let MathOperation = (a,b,operation)=>{
+   return operation(a,b);
 }
-let duoble = multiplyer(2);
-console.log(duoble(5));
+let add = (x,y)=>{
+    return x+y
+}
+let sub = (x,y)=>{
+    return x-y
+}
+console.log(MathOperation(5,7, add));
+console.log(MathOperation(10,7, sub));
