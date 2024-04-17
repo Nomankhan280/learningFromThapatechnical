@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hello{
+            width: 400px;
+            height: 300px;
+            background-image: linear-gradient(90deg, rgb(27, 228, 27),rgb(212,43,255));
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, quasi.</p>
+    </div>
+    <script>
+    let para = document.createElement("p");
+    // let node = document.createTextNode("This is New Paragraph");
+    // para.appendChild(node);
+    para.setAttribute("class", "hello")
+    // para.innerHTML = "hello i am noman khan"
+    para.textContent = "hello i am noman khan"
+    // para.style.width = "500px"
+    // para.style.backgroundColor = "blue";
+    // para.style.height = "400px"
+    // para.style.textAlign = "center"
+    // para.style.margin = "50px"
+
+    const cont = document.querySelector(".container");
+    cont.appendChild(para);
+    cont.getAttribute("container")
+    </script>
+</body>
+</html>

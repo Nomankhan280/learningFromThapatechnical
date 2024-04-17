@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Preodic Table</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            background-color: black;
+        }
+
+        h1{
+           color: rgb(249, 228, 228); 
+           text-align: center;
+           margin-top: 2rem;
+        }
+        .Element{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            width: 8rem;
+            height: 8rem;
+            border: 1px solid #d6417a;
+            border-radius: 1.3rem;
+            cursor: pointer;
+        }
+        .mainBody{
+            gap: 1.6rem;
+            display: flex;
+            /* align-items: center; */
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+     <h1>Event Delegation - Preodic Table</h1>
+    <section class="mainBody"></section>
+    <script>
+        function createpreodic(i,atomicNumber,atomicName){
+            let div = document.createElement("div");
+            div.classList.add("Element");
+            div.innerHTML = i;
+            div.setAttribute('data-atomic-number', atomicNumber);
+            div.setAttribute('data-atomic-name', atomicName);
+            return div
+        }
+        function handleEvents(event){
+            let target = event.target;
+            if (target.classList.contains("Element")) {
+                let atomicNumber = target.getAttribute('data-atomic-number')
+            let atomicName = target.getAttribute('data-atomic-name')
+            alert(`Atomic Number: ${atomicNumber}\n Atomic Name ${atomicName}`)
+            }
+        }
+
+        function initialization(){
+            for(let i =1; i<=50; i++){
+           let element =  createpreodic(`Elem ${i}`, i, `${i}` )
+           document.querySelector(".mainBody").appendChild(element);
+          
+        }
+        document.querySelector(".mainBody").addEventListener("click", handleEvents)
+        }
+        initialization()
+        
+    </script>
+</body>
+</html>

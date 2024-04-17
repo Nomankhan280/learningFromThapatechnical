@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo App</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            width: 100%;
+            height: 100vh;
+            background-color: #222;
+            position: relative;
+        }
+        section{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1{
+           color:  #ffffff;
+            font-size: 40px;
+            margin-left: 66px;
+            margin-bottom: 22px;
+        }
+        .inputElm{
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ffffff;
+            outline: 0;
+            width: 400px;
+            font-size: 16px;
+        }
+        .btn{
+            padding: 10px;
+            width: 150px;
+            font-size: 18px;
+            border-radius: 20px;
+            border: none;
+            margin-left: 15px;
+            background-color: rgb(238 238 120);
+        }
+        .Search{
+         position: relative;
+           display: flex;
+          margin-top: 20px;
+            flex-direction: column;
+        }
+        .li{
+            color: #ffffff;
+           position: absolute;
+           top: 10%;
+          right: 295%;
+          list-style: none;
+          font-size: 18px;
+        }
+        .delete{
+            padding: 10%;
+            width: 100px;
+            border: none;
+            border-radius: 20px;
+            background-color: rgb(238 238 120);
+            font-size: 18px;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section>
+            <h1>ToDo List</h1>
+            <div>
+                <input type="text" class="inputElm" placeholder="Search here">
+                <button class="btn"  disabled>Add ToDo</button>
+            </div>
+            <div class="fullcontainer">
+            <!-- <div class="Search">
+                 <li class="li">Apple</li> 
+              <button class="delete">Delete</button>
+            </div> -->
+        </div>
+        </section>
+    </div>
+    <script>
+        let inputElm = document.querySelector(".inputElm");
+        let button = document.querySelector(".btn");
+        // let Search = document.querySelector(".Search")
+        let fullcontainer = document.querySelector(".fullcontainer");
+        
+        // let AddData = getTodolistFromlocal() || []
+        function getTodolistFromlocal(){
+          return JSON.parse(localStorage.getItem("dataTobeAdd"))
+       
+          
+        }
+        let AddData = getTodolistFromlocal() || []
+
+        function CreatClass(e){
+            
+            let AddTodolist = inputElm.value.trim();
+           
+           if (!AddData.includes(AddTodolist)) {
+           
+            AddData.push(AddTodolist);
+            AddData = [...new Set(AddData)]
+            console.log(AddData);
+            localStorage.setItem("dataTobeAdd", JSON.stringify(AddData))
+            let div = document.createElement("div");
+            div.classList.add("Search");
+            div.innerHTML = ` <li class="li">${inputElm.value}</li> <button class="delete">Delete</button>`
+            fullcontainer.appendChild(div)
+        //     div.classList.add("Search");
+        //     let li = document.createElement("li");
+        //     li.classList.add("li");
+        //     li.innerText = inputElm.value;
+        //     let button = document.createElement("button");
+        //     button.classList.add("delete");
+        //     button.innerText = "Delete";
+        //    fullcontainer.appendChild(div).appendChild(li);
+        //    fullcontainer.appendChild(div).appendChild(button);
+        //    button.addEventListener("click", (event)=>{
+         
+        //     if (event.target.tagName === "BUTTON") {
+        //        event.target.parentElement.remove()
+        //     }
+        //    })
+        }
+           
+        }
+     
+        function createData(elm){
+            let div = document.createElement("div");
+            div.classList.add("Search")
+            div.innerHTML = ` <li class="li">${elm}</li> <button class="delete">Delete</button>`;
+            fullcontainer.appendChild(div)
+
+        }
+        function ShowData(){
+            console.log(AddData);
+            AddData.forEach((elm,i)=>{ 
+             
+                
+                createData(elm)
+            })
+        }
+        function addtodoData(AddData){
+           return localStorage.setItem("dataTobeAdd", JSON.stringify(AddData))
+        }
+       function removeTodoList(e){
+        let removeTodo = e.target;
+        let listOfTodo = removeTodo.previousElementSibling.innerText;
+        let parentelm = removeTodo.parentElement
+        console.log(listOfTodo);
+        AddData = AddData.filter((elem)=>{
+            return elem !== listOfTodo.toLowerCase()
+        })
+        addtodoData(AddData)
+        console.log(AddData);
+        parentelm.remove()
+       }
+        fullcontainer.addEventListener('click', (evn)=>{
+          removeTodoList(evn)
+        })
+        
+        ShowData()
+        
+
+        function inputInsertOrnot(){
+            if (inputElm.value.trim() !== "" ) {
+                button.removeAttribute("disabled")
+            }else{
+                button.setAttribute("disabled" , true)
+            }
+        }
+        inputElm.addEventListener("input", inputInsertOrnot)
+        button.addEventListener("click", CreatClass)
+    </script>
+</body>
+</html>

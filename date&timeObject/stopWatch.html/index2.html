@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stopWatch</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        section{
+            width: 100%;
+            height: 100vh;
+            background-color: #222222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+        .container{
+            width: 30%;
+            /* height: 30vh; */
+            border-radius: 5px;
+            background-color: rgb(80, 166, 212);
+            box-shadow: 5px 5px 1.2px 2px  red;
+        }
+        h1{
+            text-align: center;
+            font-size: 60px;
+            font-weight: bolder;
+           
+        }
+        .box{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* width: 100%; */
+            flex-wrap: wrap;
+            
+        }
+        .btn{
+            width: 150px;
+            padding: 12px;
+            border: none;
+            border-radius: 20px;
+            background-color: whitesmoke;
+            margin: 10px;
+            /* flex-wrap: wrap; */
+            font-size: 18px;
+            cursor: pointer;
+            color: #222222;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="container">
+            <h1 id="number">0</h1>
+            <div class="box">
+                <button class="btn" id="start">Start</button>
+                <button class="btn" id="stop">Stop</button>
+                <button class="btn" id="Reset">Reset</button>
+                <button class="btn" id="GetTime">GetTime</button>
+                <button class="btn" id="ClearTime">ClearTime</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let start = document.getElementById("start");
+        let number = 0;
+        let intervalId;
+        function StartTimer(){
+        intervalId = setInterval(() => {
+          document.getElementById("number").innerHTML = number++;
+         }, 1000);
+        }
+        function stopTimer(){
+            clearInterval(intervalId)
+        }
+        function ResetTimer(){
+            number = 0;
+            document.getElementById("number").innerHTML = number;
+            clearInterval(intervalId)
+        }
+        function GetTime(){
+            document.getElementById("number").innerHTML = `time stop is: ${number-1}`
+            clearInterval(intervalId)
+        }
+        function ClearTime(){
+            document.getElementById("number").innerHTML = "";
+            clearInterval(intervalId)
+            
+        }
+
+    //    let interId =  setInterval(StartTimer, 1000);
+        start.addEventListener("click", StartTimer)
+        document.getElementById("stop").addEventListener("click", stopTimer)
+        document.getElementById("Reset").addEventListener("click", ResetTimer)
+        document.getElementById("GetTime").addEventListener("click", GetTime)
+        document.getElementById("ClearTime").addEventListener("click", ClearTime)
+    </script>
+</body>
+</html>

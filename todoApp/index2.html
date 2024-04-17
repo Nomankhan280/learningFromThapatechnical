@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App3</title>
+    <style>
+        .item{
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <div>
+            <input type="text" id="input1" name="Uname" required>
+            <button class="btn">AddTodo</button>
+        </div>
+        <section class="all-todo-item">
+            <!-- <div class="item">
+                <li>Apple</li>
+                <button>Delete</button>
+            </div> -->
+        </section>
+    </form>
+    <script>
+       let inputvalue = document.getElementById("input1");
+       let button = document.querySelector(".btn");
+       let todoItem = document.querySelector(".all-todo-item");
+       function displayData(event){
+        let userData =JSON.parse( localStorage.getItem("userdetails")) ?? []
+        userData.push({
+            'inputvalue':inputvalue.value
+        })
+        localStorage.setItem("userdetails", JSON.stringify(userData));
+        console.log(userData);
+      event.preventDefault(event)
+        let div = document.createElement("div");
+        div.classList.add("item");
+        div.innerHTML = ` <li>${inputvalue.value}</li> <button>Delete</button>
+   `
+   todoItem.appendChild(div);
+  
+       }
+       button.addEventListener("click",(e)=>{
+        displayData(e)
+        ShowData(e)
+       })
+       function ShowData(){
+        let userData =JSON.parse( localStorage.getItem("userdetails")) ?? []
+        let finalRes = '';
+        userData.forEach((element) => {
+           finalRes += `  <div class="item">
+                <li>${element.value}</li>
+                <button>Delete</button>
+            </div>`
+        });
+       todoItem.innerHTML = finalRes;
+       }
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event delegation</title>
+    <style>
+        body {
+          height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          font-family: Arial, sans-serif;
+          background-color: #333;
+        }
+  
+        #myList {
+          list-style: none;
+          padding: 0;
+        }
+  
+        #myList li {
+          padding: 10px;
+          border: 1px solid #ccc;
+          margin: 5px;
+          cursor: pointer;
+          transition: transform 0.3s ease-in-out;
+        }
+  
+        #myList li:hover {
+          transform: scale(1.1);
+          background-color: #f0f0f0;
+          color: #333;
+        }
+  
+        #listValue {
+          margin-top: 20px;
+          font-size: 20px;
+          color: #f5ee62;
+        }
+      </style>
+</head>
+<body>
+    <p>Which programming Language you like the most?</p>
+    <br />
+    <ul id="myList">
+      <li>🎉 JavaScript 🎉</li>
+      <li>🎈 React 🎈</li>
+      <li>🎊 Next 🎊</li>
+      <li>🎁 HTML/CSS 🎁</li>
+    </ul>
+    <p id="listValue"></p>
+
+    <script>
+      function delegation(even){
+        const listitem = even.target;
+        listitem.style.transform = 'rotateY(360deg)'
+        setTimeout(() => {
+            listitem.style.transform = 'rotateY(0deg)'
+        }, 500);
+        document.getElementById("listValue").innerHTML = `Your fav language is: ${listitem.innerHTML}`
+      }
+
+      document.getElementById("myList").addEventListener("click",delegation)
+    </script>
+</body>
+</html>

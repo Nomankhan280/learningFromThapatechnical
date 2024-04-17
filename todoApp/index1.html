@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App </title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+       
+    </style>
+</head>
+<body>
+ <h1>Todo List</h1>
+ <br>
+   <form>
+    <div>
+        <input type="text" id="inputvalue" >
+        <button class="btn">AddTodo</button>
+    </div>
+    <section class="todo-list-elm">
+       
+    </section>
+   </form>
+</div>
+  </div>
+  <script>
+   let inputvalue = document.querySelector("#inputvalue")
+   let todolist = document.querySelector(".todo-list-elm")
+   document.querySelector(".btn").addEventListener("click", (e)=>{
+    addTodoList(e)
+   })
+   let localvalue = [];
+   function addTodoList(e){
+    e.preventDefault();
+  
+   let localtodolist = inputvalue.value.trim();
+   localvalue.push(localtodolist);
+   localtodolist = new Set(localtodolist)
+   console.log(localtodolist);
+   let div = document.createElement("div");
+   div.classList.add("add-list");
+   div.innerHTML = `<li>${inputvalue.value}</li> <button class="delete">Delete</button>`
+    todolist.appendChild(div);
+   }
+  </script>
+</body>
+</html>

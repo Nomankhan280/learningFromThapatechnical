@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+    }
+    form{
+        width: 500px;
+        margin: auto;
+        box-shadow: 0px 0px 10px 2px #ccc;
+        padding: 10px;
+    }
+    h2{
+        padding: 20px 0;
+    }
+    form label{
+        display: block;
+        font-size: 16px;
+    }
+    form input{
+        width: 100%;
+        height: 30px;
+        margin-bottom: 10px;
+    }
+    form button{
+        padding: 10px 25px;
+        background-color: aqua;
+        color: black;
+        border: none;
+        cursor: pointer;
+    }
+    .main{
+        width: 1320px;
+        display: flex;
+        flex-wrap: wrap;
+        margin: auto;
+    }
+    .items{
+        flex-basis: 23%;
+        margin: 1%;
+        box-shadow: 0px 0px 10px 2px #ccc;
+        padding: 1%;
+        position: relative;
+    }
+    span{
+        position: absolute;
+        font-size: 30px;
+        cursor: pointer;
+        top: 0;
+        right: 0;
+    }
+    .items h5{
+        margin-top: 10px;
+    }
+    .clear{
+        background-color: red;
+    }
+</style>
+</head>
+<body>
+    <form action="">
+        <h2>Enquiry Now</h2>
+        <label for="">Name</label>
+        <input type="text" name="uname" >
+        <label for="">Email</label>
+        <input type="email" name="email" >
+        <label for="">Phone</label>
+        <input type="text" name="Phone">
+        <button>Save</button>
+        <button class="clear"  >Clear All</button>
+    </form>
+    <div class="main">
+       
+    </div>
+    <script>
+        let form = document.querySelector("form");
+        let main = document.querySelector(".main");
+        let Clear = document.querySelector(".clear");
+       
+        form.addEventListener("submit", (event)=>{
+            let name = event.target.uname.value
+            let email = event.target.email.value
+            let Phone = event.target.Phone.value
+            let checkbtn = 0;
+
+        let userData =JSON.parse( localStorage.getItem("userDetails")) ?? []
+        for(let v of userData){
+           if (v.email==email||v.Phone==Phone) {
+            checkbtn = 1;
+            break;
+           }
+        }
+        if (checkbtn == 1) {
+            alert("you have already insert this email or phone number")
+        }else{
+           userData.push({
+            'name':name,
+            'email':email,
+            'Phone':Phone
+           })
+           localStorage.setItem("userDetails", JSON.stringify(userData))
+           event.target.reset()
+           displayData()
+            console.log(userData);
+            Clear.addEventListener("click",()=>{
+            let userData =JSON.parse( localStorage.getItem("userDetails")) ?? []
+            localStorage.clear(userData);
+             displayData()
+        })
+            event.preventDefault()
+        }
+         })
+        function displayData(){
+            let userData =JSON.parse( localStorage.getItem("userDetails")) ?? []
+            let finalRes = '';
+           userData.forEach((element, i) => {
+           finalRes += `
+           <div class="items">
+            <span onclick= "RemoveData(${i})">&times</span>
+            <h5>Name</h5>
+            <div>${element.name}</div>
+            <h5>Email</h5>
+            <div>${element.email}</div>
+            <h5>Phone</h5>
+            <div>7${element.Phone}</div>
+        </div>
+           `
+           });
+          main.innerHTML = finalRes;
+        }
+        displayData()
+
+        function RemoveData(index){
+            let userData =JSON.parse( localStorage.getItem("userDetails")) ?? []
+            userData.splice(index,1);
+            localStorage.setItem("userDetails", JSON.stringify(userData))
+            displayData()
+        }
+        
+    </script>
+</body>
+</html>

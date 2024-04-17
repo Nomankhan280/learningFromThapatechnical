@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Todo App</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: black;
+        }
+        .main{
+            width: 25rem;
+            /* height: 20rem; */
+            /* background-color: darkgray; */
+        }
+        .input{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            width: 100%;
+            height: 100%;
+
+        }
+        #input{
+            padding: 10px 25px;
+            border-radius: 20px;
+            border: none;
+            font-weight: 900;
+           
+        }
+        #btn{
+            padding: 10px 23px;
+            border: none;
+            font-weight: 900;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .main-list{
+            width: 60%;
+            display: flex;
+            justify-content: space-between;
+            margin-left: 1.1rem;
+            margin-top: 20px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .button{
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .li{
+            font-size: 20px;
+            font-weight: 700;
+            list-style: circle;
+            color: white;
+        }
+    </style>
+</head>
+<body >
+    <div class="main">
+        <div class="input">
+            <input type="text" id="input">
+            <button id="btn">AddTodo</button>
+        </div>
+        <div class="all-list-item">
+            <!-- <div class="main-list">
+                <li class="li">hello</li>
+                <button class="button">delete</button>
+            </div> -->
+        </div>
+    </div>
+    <script>
+        let inputValue = document.getElementById("input");
+        let ButtonId = document.getElementById("btn");
+        let reference = document.querySelector(".all-list-item");
+        let userData = JSON.parse(localStorage.getItem("userdetails"))?? []
+        function displayData(event){
+           userData = JSON.parse(localStorage.getItem("userdetails"))?? []
+           userData.push({
+            'inputValue':inputValue.value
+           })
+          
+           localStorage.setItem("userdetails", JSON.stringify(userData))
+           console.log(userData);
+         local()
+            let data = inputValue.value;
+           let div = document.createElement("div");
+           div.classList.add("main-list");
+           div.innerHTML = ` <li class="li">${data}</li> <button class="button">delete</button>`
+           document.querySelector(".all-list-item").appendChild(div);
+        }
+        // document.querySelector(".button").addEventListener("click",(evn)=>{
+        //     console.log(evn.target);
+        // })
+       function local(){
+        userData = JSON.parse(localStorage.getItem("userdetails"))?? []
+        let finalres = ""
+        userData.forEach((element) => {
+            finalres += ` <div class="main-list">
+                <li class="li">${element.value}</li>
+                <button class="button">delete</button>
+            </div>`
+        });
+        finalres = reference;
+    }
+    local()
+       
+        ButtonId.addEventListener('click', (e)=>{
+            displayData()
+            // local()
+        })
+        // displayData()
+    </script>
+</body>
+</html>

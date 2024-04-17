@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock Using Vanilla Javascript</title>
+    <style>
+        .clock{
+            margin: auto;
+            width: 30vw;
+            height: 30vw;
+            background-image: url(clock.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            position: relative;
+        }
+        /* #huors, #minuts, #seconds{
+            position: absolute;
+            background: black;
+            border-radius: 10px;
+        } */ 
+        #hours{
+            position: absolute;
+            background-color: black;
+            width: 2%;
+    height: 23%;
+    top: 28%;
+    left: 48.9%;
+    transform-origin: bottom;
+    border-radius: 10px;
+        }
+        #minuts{
+            position: absolute;
+            background-color: black;
+            width: 1.7%;
+            height: 30%;
+    top: 21%;
+    left: 48.9%; 
+    transform-origin: bottom;
+    border-radius: 10px;
+   
+        }
+        #seconds{
+
+            position: absolute;
+            background-color: black;
+            width: 1.5%;
+            height: 35%;
+    top: 16%;
+    left: 48.9%;
+    transform-origin: bottom;
+    border-radius: 10px;
+
+        }
+           
+        
+
+    </style>
+</head>
+<body>
+    <div class="clock">
+        <div id="hours"></div>
+        <div id="minuts"></div>
+        <div id="seconds"></div>
+    </div>
+
+    <script>
+        let hours1 = document.getElementById("hours");
+        let minuts1 = document.getElementById("minuts");
+        let seconds1 = document.getElementById("seconds");
+        let hrotation;
+        let mrotation;
+        let srotation;
+        setInterval(() => {
+            let currDate = new Date();
+           let hours = currDate.getHours();
+           let minuts = currDate.getMinutes();
+           let seconds = currDate.getSeconds();
+           hrotation = 30*hours + minuts/2;
+           let mrotation = 6*minuts;
+           let srotation = 6*seconds;
+          hours1.style.transform = `rotate(${hrotation}deg)`;
+          minuts1.style.transform = `rotate(${mrotation}deg)`;
+          seconds1.style.transform = `rotate(${srotation}deg)`;  
+        }, 1000);
+           
+    </script>
+</body>
+</html>

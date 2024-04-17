@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Color Genrator</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            transition: 1s;
+        }
+        .main{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* background-color: black; */
+        }
+        .container{
+            width: 20rem;
+            /* height: 14rem; */
+            background-color: rgb(249, 246, 246);
+            border-radius: 7px;
+        }
+        .under-container{
+            text-align: center;
+            border: 1px solid white;
+        }
+        .under-container h2{
+            width: 90%;
+            margin: auto;
+            /* background-color: pink; */
+            font-size: 25px;
+            cursor: pointer;
+
+        }
+        .under-container button{
+            display: block;
+            width: 90%;
+            background-color: black;
+            color: #fff;
+            font-size: 25px;
+            border-radius: 10px;
+            border: 0;
+            margin: auto;
+            padding: 7px;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="container">
+            <div class="under-container">
+                <h2 class="heading">#fff</h2>
+                <button id="btn">Click Me</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function GetColor(){
+            let randomNumber = Math.floor(Math.random() * 16777215);
+            let hexaCode = "#"+randomNumber.toString(16);
+            document.body.style.backgroundColor = hexaCode;
+            document.querySelector(".heading").textContent = hexaCode;
+            // console.log(randomNumber,hexaCode);
+           let container1 =  document.querySelector(".under-container")
+            container1.style.backgroundColor =  hexaCode
+        }
+        let button = document.getElementById("btn");
+        button.addEventListener(
+            "click", 
+            GetColor
+        )
+        GetColor()
+        // document.getElementById("btn")
+        // GetColor()
+    </script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StooWatch Timer</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        section{
+            width: 25rem;
+            /* height: 20rem; */
+            background-image: linear-gradient(90deg,#fe4f,#666f);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border-radius: 10px;
+        }
+        body{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+       
+        .HeadLine{
+            width: 10rem;
+            /* background-color: white; */
+            text-align: center;
+            font-size: 6rem;
+        }
+        .button1{
+            width: 6rem;
+            padding: 10px 0;
+            border: none;
+            border-radius: 1.3rem;
+            margin-top: 10px;
+            flex-wrap: wrap;
+            margin: 15px;
+            background-color: yellow;
+            cursor: pointer;
+            /* background-color: yellow; */
+        }
+        /* .button1:hover{
+border: 3px solid goldenrod;
+background-color: yellow;
+font-size: 20px;
+        } */
+    </style>
+</head>
+<body>
+    <section>
+    <p class="HeadLine">0</p>
+    <div class="buttons">
+        <button class="button1" id="start">Start</button>
+        <button class="button1" id="Stop">Stop</button>
+        <button class="button1" id="Reset">Reset</button>
+        <button class="button1" id="GetTime">GetTime</button>
+        <button class="button1" id="ClearTime">ClearTime</button>
+       
+    </div>
+    <div class="resetvalue"></div>
+</section>
+<script>
+     let HeadLine = document.querySelector(".HeadLine")
+    let Start = document.getElementById("start");
+    let Stop = document.getElementById("Stop");
+    let Reset = document.getElementById("Reset");
+    let GetTime = document.getElementById("GetTime");
+    let ClearTime = document.getElementById("ClearTime");
+    let show = document.querySelector(".resetvalue")
+
+    let number = 0;
+    let intervalId;
+    function StartDate(){
+        intervalId = setInterval(() => {
+            HeadLine.innerHTML = number++;   
+        }, 1000);
+     
+    }
+
+    function stopTimer(){
+       clearInterval(intervalId)
+    }
+    function showData(){
+        let NewPara = document.createElement("p");
+        NewPara.innerText = `The stop Time is ${number - 1}`
+        show.appendChild(NewPara)
+        clearInterval(intervalId)
+    }
+
+    function ResetTimer(){
+            number = 0
+        HeadLine.innerHTML = number;
+        clearInterval(intervalId)  
+    }
+    
+    function ClearItem(){
+        
+        show.innerHTML = "";
+
+    }
+
+    Start.addEventListener("click", StartDate)
+    Stop.addEventListener("click", stopTimer);
+    Reset.addEventListener("click", ResetTimer)
+    GetTime.addEventListener("click", showData);
+    ClearTime.addEventListener("click", ClearItem)
+  
+//    console.log( StartDate());
+</script>
+</body>
+</html>

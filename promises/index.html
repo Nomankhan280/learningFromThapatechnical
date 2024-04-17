@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dad Jokes to me </title>
+    <style>
+        body{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container{
+            width: 25%;
+            /* height: 15%; */
+            border: 1px solid rgb(2, 2, 2);
+            border-radius: 10px;
+        }
+        #button{
+            width: 100%;
+            background-color: rgb(77, 90, 51);
+            cursor: pointer;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>dad jokes with me</h1>
+        <div class="getapi"></div>
+        <button id="button">add Jokes</button>
+    </div>
+    <script>
+        let insertApi = document.querySelector(".getapi");
+        const apiUrl = "https://icanhazdadjoke.com/";
+       const GetJoke = ()=>{
+        fetch(apiUrl,{
+            headers: {
+                Accept: "Application/json",
+            },
+        }).then((res)=>{
+            console.log(res);
+            return res.json();
+            
+        }).then((data)=>{
+            console.log(data.joke)
+            insertApi.innerHTML = data.joke;
+        })
+       }
+       GetJoke()
+       document.getElementById("button").addEventListener('click', GetJoke)
+    </script>
+</body>
+</html>

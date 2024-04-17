@@ -1,0 +1,61 @@
+.main-container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+}
+body{
+    transition: 0.7s;
+    /* background-image: linear-gradient(90deg, rgba(210, 210, 31, 0.7), rgba(198, 39, 39, 0.8)); */
+}
+
+.container{
+    width: 30rem;
+    height: 10rem;
+    /* border: 1px solid black; */
+    border-radius: 10px;
+}
+.div1{
+    width: 100%;
+    /* background-color: brown; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20%;
+   margin-top: 23px;
+}
+#btn1{
+    width: 9rem;
+    background-color: rgb(52, 51, 54);
+    padding: 10px 23px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    margin-right: 35px;
+    margin-left: 35px;
+    border-radius: 20px;
+    color: white;
+     width: 9rem;
+     box-shadow: 2px 3px 2px rgb(51, 48, 48);
+}
+#btn2{
+    width: 9rem;
+    background-color: yellow;
+    padding: 10px 23px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    border-radius: 20px;
+    box-shadow: 2px 3px 2px rgb(51, 48, 48);
+}
+.copy{
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 600;
+    
+}
+.copy:hover{
+    color: rgb(199, 194, 194);
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo App</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .main{
+            width: 100%;
+            height: 100vh;
+            background-color: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .todoApp{
+            width: 30rem;
+            height: 20rem;
+            /* background-color: khaki; */
+            /* border: 1px solid white; */
+            border-radius: 7px;
+        }
+        h1{
+            text-align: center;
+            font-weight: bolder;
+            font-size: 45px;
+            color: white;
+        }
+        #input{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        #input1{
+            width: 70%;
+            border: none;
+            outline: 0;
+            padding: 6px;
+            font-size: 20px;
+            border-radius: 7px;
+        }
+        .add-todo{
+            width: 110px;
+            background-color: rgb(243, 243, 170);
+            padding: 11px;
+            font-size: 20px;
+            margin-right: 10px;
+            border-radius: 30px;
+            text-align: center;
+        }
+        .unorderd{
+            /* width: 100%; */
+            margin-top: 10px;
+            margin-left: 17px;
+            font-size: 20px;
+            position: relative;
+        }
+        ul li{
+            color: #fff;
+            font-size: 20px;
+            /* background-color: black; */
+            width: 100%;
+            padding: 10px;
+        }
+        .delete{
+            position: absolute;
+            right: 31%;
+            /* color: #fff; */
+            bottom: 0%;
+            background-color:  rgb(243, 243, 170);
+           font-size: 20px;
+           padding: 10px;
+          width: 100px;
+           border-radius: 30px;
+           text-align: center;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="todoApp">
+            <h1>Todo List</h1>
+            <div id="input">
+                <input type="text" id="input1" >
+                <div class="add-todo">Add Todo</div>
+            </div>
+            <ul class="unorderd">
+                <!-- <li>Apple</li>
+                <div class="delete">Delete</div> -->
+            </ul>
+        </div>
+    </div>
+    <script>
+        let input = document.getElementById("input1");
+        let AddTodo = document.querySelector(".add-todo");
+        let onorderd = document.querySelector(".unorderd");
+        function creatFun(){
+          let li =  document.createElement("li");
+          li.innerText = input.value;
+          onorderd.appendChild(li);
+          let div = document.createElement("div");
+          div.className = "delete";
+          div.innerHTML= "Delete"
+        //   div.setAttribute("class", "delete");
+          onorderd.appendChild(div);
+        }
+      function addbtn(){
+        AddTodo.addEventListener("click", (elm)=>{
+           if (input.value === "") {
+            alert("please enter Something....")
+           }
+     creatFun(elm)
+        })
+      }
+      addbtn()
+    
+      
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>events</title>
+</head>
+<body>
+    <!-- <button id="btn">Click me </button>
+    <button id="myButton">Click me</button>
+    <script>
+// HTML
+
+
+// JavaScript
+function handleClick() {
+    alert('Button clicked!');
+}
+
+// const button = document.getElementById('myButton');
+// button.addEventListener('click', handleClick);
+const button = document.getElementById('myButton');
+button.addEventListener('onmouseover', handleClick);
+
+// Remove the event listener after the button is clicked once
+// button.removeEventListener('click', handleClick);
+    </script> -->
+
+   <p id="hello">clock</p>
+    <script>
+       
+        function click(){
+            let date = new Date();
+            document.getElementById("hello").innerHTML = date.toLocaleTimeString()
+        }
+        click()
+let id = setInterval(() => {
+    click()
+}, 1000);
+
+setTimeout(() => {
+    clearInterval(id)
+    alert("five seconds has complete")
+}, 5000);
+    </script>
+</body>
+</html>

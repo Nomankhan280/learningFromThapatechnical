@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .main{
+            width: 100%;
+            height: 100vh;
+            background-image: linear-gradient(90deg, #43ff32, #67f);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .container{
+            width: 30rem;
+            background-color: white;
+            border-radius: 7px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+        .row{
+            width: 100%;
+            padding: 5px;
+            margin-top: 10px;
+            margin-left: 4px;
+        }
+        h2{
+            width: 100%;
+            padding: 5px;
+            margin-top: 10px;
+            margin-left: 4px;
+        }
+        #btn{
+            width: 95%;
+            padding: 6px;
+            background-image: linear-gradient(90deg,  #43ff32, #67f);
+            border-radius: 7px;
+            border: none;
+            outline: 0;
+            font-size: 17px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="container">
+            <h2 id="QuizHeading">This is the dummy text</h2>
+            <div class="row">
+                <input id="Option1" class="input" type="radio" name="option" value="a">
+                <label for="Option1">Option1</label>
+            </div>
+            <div class="row">
+                <input id="Option2" class="input" type="radio" name="option" value="b">
+                <label for="Option2">Option2</label>
+            </div>           
+            <div class="row">
+                <input id="Option3" class="input" type="radio" name="option" value="c">
+                <label for="Option3">Option3</label>
+            </div>
+            <div class="row">
+                <input id="Option4" class="input" type="radio" name="option" value="d">
+                <label for="Option4">Option4</label>
+            </div>
+            <button id="btn" onclick="subQuiz()">Submit Now</button>
+        </div>
+    </div>
+    <script>
+        const questions = [
+            {
+                'que': 'which is the markUp language',
+                'a': 'CSS',
+                'b': 'HTML',
+                'c': 'Java',
+                'd': 'Python',
+                'correct': 'b'
+            },
+            {
+                'que': 'CSS Stand for:',
+                'a': 'PHP',
+                'b': 'Java',
+                'c': 'kotlin',
+                'd': 'Cascading Style Sheet',
+                'correct': 'd'
+            }
+        ]
+            let total = questions.length;
+        let index = 0;
+        let right = 0, wrong = 0;
+        let OptionInput = document.querySelectorAll(".input");
+
+        function displayQuiz(){
+          let currentQuiz = questions[index];
+          if (index === total) {
+           return endQuiz()
+          }
+          Reset()
+         document.getElementById("QuizHeading").innerText = currentQuiz.que;
+            OptionInput[0].nextElementSibling.innerHTML = currentQuiz.a;
+            OptionInput[1].nextElementSibling.innerHTML = currentQuiz.b;
+            OptionInput[2].nextElementSibling.innerHTML = currentQuiz.c;
+            OptionInput[3].nextElementSibling.innerHTML = currentQuiz.d;
+           
+        }
+
+        function GetAnswers(){
+            let answers;
+            OptionInput.forEach((elm)=>{
+                if (elm.checked) {
+                  answers = elm.value;
+                }
+            })
+            return answers;
+        }
+        function subQuiz(){
+            let currentQuiz = questions[index];
+          let ans =   GetAnswers()
+          if (ans === currentQuiz.correct) {
+            right++;
+          }else{
+            wrong++;
+          }
+          index++;
+          displayQuiz();
+          return
+        }
+        function Reset(){
+            OptionInput.forEach((elm)=>{
+                elm.checked = false;
+            })
+        }
+
+        function endQuiz(){
+            document.querySelector(".container").innerHTML = ` <h3> Thank you for playing Quiz: <h3>
+            <h3> you attempt ${right} from ${total} </h3>`; 
+        }
+        displayQuiz()
+    </script>
+</body>
+</html>

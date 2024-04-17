@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Gradient</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="container">
+            <div class="div1">
+                <button id="btn1">#fffff</button>
+                <button id="btn2">#65754</button>
+            </div>
+            <div class="copy">Copy your code Here</div>
+            <hr>
+            <div class="linear">background-image: linear-gradient(rgba(0, 0, 255, 0.5), rgba(255, 255, 0, 0.5)),</div>
+        </div>
+    </div>
+    <script>
+      let rgb1;
+      let rgb2;
+        function RandomColor(){
+          let randomNum = "0123456789abcdef";
+          let result = "#";
+          for(let i = 0; i<6; i++){
+            result = result + randomNum[Math.floor(Math.random() * 16)]
+          }
+          return result
+        }
+        
+
+        function firstBtn(){
+          rgb1 = RandomColor();
+          document.getElementById("btn1").innerText = rgb1;
+          document.body.style.backgroundImage = `linear-gradient(90deg, ${rgb1}, ${rgb2})`
+        }
+
+        
+        function firstBtn1(){
+          rgb2 = RandomColor();
+          
+          document.getElementById("btn2").innerText = rgb2;
+          document.body.style.backgroundImage = `linear-gradient(90deg, ${rgb1}, ${rgb2});`
+        }
+        document.getElementById('btn1').addEventListener("click", firstBtn);
+        document.getElementById('btn2').addEventListener("click", firstBtn1);
+localStorage.setItem("zaraZikra", "chapri")
+localStorage.getItem("chapri");
+    </script>
+    // 16777215
+</body>
+</html>

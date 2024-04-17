@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>periodic <Table></Table></title>
+    <style>
+        body{
+            background-color: #1e1818;
+        }
+        h1{
+            text-align: center;
+            color: white;
+
+        }
+        #mainBody{
+            gap: 1.3rem;
+            display: flex;
+            justify-content: center;
+        flex-wrap: wrap;
+        color: white;
+        }
+        .element{
+            width: 8rem;
+            height: 8rem;
+            border: 1px solid  #d6417a;
+            /* text-align: center; */
+            margin: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+          rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+          border-radius: 1rem;
+          cursor: pointer;
+        }
+        .element:hover{
+            background-color: #d6417a;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Event Delegation - Preodic Table</h1>
+    <section id="mainBody"></section>
+
+    <script>
+        let body = document.getElementById("mainBody");
+
+        function creatPreodic(symbol, atomicNumber, atomicName){
+         let element = document.createElement("div");
+         element.classList.add("element");
+        element.innerHTML = symbol;
+        element.setAttribute('data-atomic-number', atomicNumber);
+        element.setAttribute('data-atomic-name', atomicName);
+            return element;
+        }
+
+
+        
+       function handleEvents(event){
+            let target = event.target;
+           
+if (target.classList.contains("element")) {
+  const atomicNumber = target.getAttribute("data-atomic-number");
+  const atomicName = target.getAttribute("data-element-name");
+  alert(`Atomic Number: ${atomicNumber}\nElement Name: ${atomicName}`);
+}
+
+        }
+        
+      
+       function initializepreodic(){
+        for(let i = 0; i<=50; i++){
+            let element = creatPreodic(`  Elem${i}` ,i , `Element${i}`)
+        body.append(element)
+        
+        }
+        body.addEventListener("click",handleEvents)
+      
+       }
+       
+       initializepreodic()
+       
+    </script>
+</body>
+</html>
